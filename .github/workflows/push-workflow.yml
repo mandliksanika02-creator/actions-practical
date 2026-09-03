@@ -1,19 +1,23 @@
-name: Cron Job Every 5 Minutes
+name: Push Trigger Workflow
 
 on:
-  schedule:
-    - cron: "*/5 * * * *"
+  push:
+    branches:
+      - main
 
 jobs:
-  cron-job:
+  push-job:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Job Started
-        run: echo "Cron job has started!"
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Success Message
+        run: echo "Code pushed successfully!"
 
       - name: Display Date and Time
         run: date
 
-      - name: Completion Message
-        run: echo "Cron job completed successfully!"
+      - name: Display Working Directory
+        run: pwd
